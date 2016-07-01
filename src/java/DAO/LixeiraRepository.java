@@ -2,8 +2,10 @@ package DAO;
 
 import Business.Objects.Lixeira;
 import Business.Objects.Lixeira_;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -94,6 +96,18 @@ public class LixeiraRepository extends GenericDAO {
         EntityManager em = getEntityManager();
         try {
             return em.find(Lixeira.class, id);
+        } finally {
+            em.close();
+        }
+    }
+    
+    public List<Lixeira> buscarLixeiras() {
+        EntityManager em = getEntityManager();
+        try {
+            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+            cq.select(cq.from(Lixeira.class));
+            Query q = em.createQuery(cq);
+            return q.getResultList();
         } finally {
             em.close();
         }

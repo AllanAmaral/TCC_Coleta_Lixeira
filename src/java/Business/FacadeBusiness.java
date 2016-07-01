@@ -45,6 +45,10 @@ public class FacadeBusiness {
  
     }
     
+    public void carregarPontosLixeiras() throws Exception {
+        lixeiraController.carregarPontosLixeiras();
+    }
+    
     public void cadastrarLixeira(BigDecimal capacidadeLixeiraKg, BigDecimal capacidadeLixeiraLt,
             BigDecimal coletadoLixeiraKg, BigDecimal coletadoLixeiraLt,
             BigDecimal latitude, BigDecimal longitude) throws Exception {
