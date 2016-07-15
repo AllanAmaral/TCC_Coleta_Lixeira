@@ -18,7 +18,7 @@ public class GenericDAO implements Serializable {
     private EntityManagerFactory emf = null;
     
     public GenericDAO() {
-        this.emf = Persistence.createEntityManagerFactory("TCC_Coleta_LixoPU");
+        this.emf = Persistence.createEntityManagerFactory("TCC_Coleta_LixeiraPU");
     }
 
     public EntityManager getEntityManager() {

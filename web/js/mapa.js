@@ -4,10 +4,10 @@ var infoBox = [];
 var markers = [];
 
 function initialize() {	
-    var latlng = new google.maps.LatLng(-18.8800397, -47.05878999999999);
+    var latlng = new google.maps.LatLng(-30.032217, -51.215083);
 	
     var options = {
-        zoom: 5,
+        zoom: 16,
 	center: latlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -26,9 +26,7 @@ function abrirInfoBox(id, marker) {
 	idInfoBoxAberto = id;
 }
 
-function carregarPontos() {
-    var lixeiraController = 
-    
+function carregarPontos() {   
     $.getJSON('js/pontos.json', function(pontos) {
 
             var latlngbounds = new google.maps.LatLngBounds();

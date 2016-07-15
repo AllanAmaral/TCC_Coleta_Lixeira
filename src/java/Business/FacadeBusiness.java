@@ -9,6 +9,7 @@ import Business.Objects.Motorista;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
 
 /**
  *
@@ -16,15 +17,17 @@ import java.util.List;
  * 
  * Delega para os controladores as chamadas de métodos
  */
+@ManagedBean
 public class FacadeBusiness {
     
-    private final MotoristaController motoristaController;
-    private final CaminhaoController caminhaoController;
-    private final CaminhaoMotoristaController caminhaoMotoristaController;
-    private final CaminhaoLixeiraController caminhaoLixeiraController;
-    private final HistoricoColetaController historicoColetaController;
-    private final LixeiraController lixeiraController;
+    private MotoristaController motoristaController;
+    private CaminhaoController caminhaoController;
+    private CaminhaoMotoristaController caminhaoMotoristaController;
+    private CaminhaoLixeiraController caminhaoLixeiraController;
+    private HistoricoColetaController historicoColetaController;
+    private LixeiraController lixeiraController;
 
+    /*
     public FacadeBusiness() {
         motoristaController = new MotoristaController();
         caminhaoController = new CaminhaoController();
@@ -33,6 +36,7 @@ public class FacadeBusiness {
         historicoColetaController = new HistoricoColetaController();
         lixeiraController = new LixeiraController();
     }
+    */
     
     public void cadastrarMotorista(Integer matricula, String nomeMotorista) throws Exception {
         motoristaController.registrar(matricula, nomeMotorista);
@@ -45,8 +49,10 @@ public class FacadeBusiness {
  
     }
     
-    public void carregarPontosLixeiras() throws Exception {
+    public String carregarPontosLixeiras() throws Exception {
+        lixeiraController = new LixeiraController();
         lixeiraController.carregarPontosLixeiras();
+        return "index";
     }
     
     public void cadastrarLixeira(BigDecimal capacidadeLixeiraKg, BigDecimal capacidadeLixeiraLt,

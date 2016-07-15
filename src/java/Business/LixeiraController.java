@@ -2,8 +2,6 @@ package Business;
 
 import Business.Objects.Lixeira;
 import DAO.LixeiraRepository;
-import com.sun.faces.action.RequestMapping;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.util.List;
@@ -14,14 +12,14 @@ import javax.json.stream.JsonGenerator;
  *
  * @author Allan.Amaral
  */
-public class LixeiraController{
+public class LixeiraController {
 
     private final LixeiraRepository repository;
     
     public LixeiraController() {
         repository = new LixeiraRepository();
     }
-
+    
     public void registrar(BigDecimal capacidadeLixeiraKg, BigDecimal capacidadeLixeiraLt,
             BigDecimal coletadoLixeiraKg, BigDecimal coletadoLixeiraLt,
             BigDecimal latitude, BigDecimal longitude) throws Exception {
@@ -44,7 +42,7 @@ public class LixeiraController{
     
     public void carregarPontosLixeiras() throws Exception {
         List<Lixeira> lixeiras = repository.buscarLixeiras();
-        String arquivo = LixeiraController.class.getResource("/pontos.js").getFile();
+        String arquivo = LixeiraController.class.getResource("/web/js/pontos.js").getFile();
         FileOutputStream fos = new FileOutputStream(arquivo);
         JsonGenerator geradorJson = Json.createGenerator(fos);
 
