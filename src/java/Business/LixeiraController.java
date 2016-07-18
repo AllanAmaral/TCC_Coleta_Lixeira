@@ -44,22 +44,22 @@ public class LixeiraController {
     
     public void carregarPontosLixeiras() throws Exception {
         List<Lixeira> lixeiras = repository.buscarLixeiras();
-        FileOutputStream fos = new FileOutputStream("/pontos.json");
+        FileOutputStream fos = new FileOutputStream("C:/Users/allan.amaral/Documents/GitHub/TCC_Coleta_Lixeira/web/js/pontos.json");
         JsonGenerator geradorJson = Json.createGenerator(fos);
 
         geradorJson.writeStartArray();
-        lixeiras.stream().forEach((lixeira) -> {
+        for (Lixeira lixeira : lixeiras) {
             // começando a escrever o objeto JSON e então as propriedades, por fim fecha o objeto
             geradorJson.writeStartObject()
                     .write("Id", lixeira.getIdLixeira())
                     .write("Latitude", lixeira.getLatitude())
                     .write("Longitude", lixeira.getLongitude())
                     .write("Capacidade Kg", lixeira.getCapacidadeLixeiraKg())
-                    .write("Capacidade Lt" + lixeira.getCapacidadeLixeiraLt())
-                    .write("Coletado Kg" + lixeira.getColetadoLixeiraKg())
-                    .write("Coletado Lt" + lixeira.getColetadoLixeiraLt())
+                    .write("Capacidade Lt", lixeira.getCapacidadeLixeiraLt())
+                    .write("Coletado Kg", lixeira.getColetadoLixeiraKg())
+                    .write("Coletado Lt", lixeira.getColetadoLixeiraLt())
                     .writeEnd();
-        });
+        }
 
         geradorJson.writeEnd().close();
     }
